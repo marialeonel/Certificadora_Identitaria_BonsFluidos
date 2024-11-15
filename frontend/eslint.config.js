@@ -34,5 +34,9 @@ export default [
         { allowConstantExport: true },
       ],
     },
+    env: {
+      browser: true, // Ambiente de navegador
+      node: true, // Agora o ESLint reconhece o Node.js também
+    },
   },
 ]
