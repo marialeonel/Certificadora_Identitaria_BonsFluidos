@@ -1,4 +1,4 @@
-import heartLogo from '../../assets/heart-logo.png';
+import heartLogo from '../../assets/heart-logo.png'
 
 export default function Login() {
     return (
