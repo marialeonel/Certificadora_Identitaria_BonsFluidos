@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function LandingPage() {
+function Home() {
   const navigate = useNavigate();
 
   return (
