@@ -34,7 +34,7 @@ router.get('/all', async (req, res) => {
   }
 });
 
-router.get('/:id', checkToken, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
     if (!post) return handleResponse(res, 404, 'Post not found');
