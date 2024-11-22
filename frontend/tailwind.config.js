@@ -12,7 +12,7 @@ export default {
         'logo-color': '#df204a',
         'dark': '#91142f',
         'darker-dark': '#6f1024'
-      },
+      }
     },
   },
   plugins: [
