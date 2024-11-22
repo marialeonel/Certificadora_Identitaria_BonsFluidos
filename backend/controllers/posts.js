@@ -27,12 +27,29 @@ router.post('/new-post', checkToken, upload.single('image'), async (req, res) =>
 
 router.get('/all', async (req, res) => {
   try {
-    const posts = await Post.findAll();
-    handleResponse(res, 200, 'Fetched all posts', posts);
+    const page = parseInt(req.query.page, 10) || 1; //route -> posts/all?page=1
+    const limit = 10; 
+    const offset = (page - 1) * limit; 
+
+    const { rows: posts, count: totalPosts } = await Post.findAndCountAll({
+      limit,
+      offset,
+    });
+
+    const totalPages = Math.ceil(totalPosts / limit);
+
+    handleResponse(res, 200, 'Fetched posts with pagination', {
+      posts,
+      page,
+      totalPages,
+      totalPosts,
+    });
   } catch (error) {
     handleResponse(res, 500, `Error fetching posts: ${error.message}`);
   }
 });
+
+
 
 router.get('/:id', async (req, res) => {
   try {
