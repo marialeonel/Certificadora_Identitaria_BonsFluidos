@@ -1,12 +1,22 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import ModalForm from '../../components/ModalForm/ModalForm'
+import Button from '../../components/Button/Button'
 
 function Home() {
-  const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const navigate = useNavigate()
+
+  function handleClose() {
+    setModalIsOpen(false)
+  }
 
   return (
     <div>
       <h1>Bem-vindo à Landing Page</h1>
       <button onClick={() => navigate('/blog')}>Acessar Blog</button>
+      <Button onClick={() => setModalIsOpen(true)}>Criar Post</Button>
+      {modalIsOpen && <ModalForm onClose={handleClose} action={'Criação'}/>}
     </div>
   );
 }
