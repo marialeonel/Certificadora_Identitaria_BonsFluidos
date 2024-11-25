@@ -36,8 +36,8 @@ function ModalForm({ onClose, action, post }) {
 
     return (
         <div className='fixed flex top-0 items-center justify-center w-screen h-screen bg-gray-900/25'>
-            <form className='bg-white px-3 py-6 w-screen sm:p-6 sm:w-[560px] '>
-                <Button onClick={onClose} className={'absolute w-3 h-6 rounded-full bg-gray-400'}>x</Button>
+            <form className='bg-white px-3 py-6 w-screen sm:p-6 sm:w-[560px] rounded-sm'>
+                <Button onClick={onClose} className={'absolute w-1 h-6 rounded-full bg-gray-500'}>x</Button>
                 <div className='flex flex-row items-center justify-center mb-10'>
                     <h1 className={'text-xl font-bold'}>{action} de um post</h1>
                 </div>
