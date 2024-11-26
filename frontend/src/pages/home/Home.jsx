@@ -6,7 +6,7 @@ function Home() {
   const navigate = useNavigate()
 
   return (
-    <div>
+    <div className='flex bg-rose-800 w-full max-h-full'>
       <h1>Bem-vindo à Landing Page</h1>
       <button onClick={() => navigate('/blog')}>Acessar Blog</button>
       <LastPost></LastPost>
