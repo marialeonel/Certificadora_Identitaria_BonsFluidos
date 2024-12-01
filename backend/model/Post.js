@@ -30,6 +30,11 @@ const Post = sequelize.define('Post', {
     imageUrl: {
         type: DataTypes.STRING, 
         allowNull: true
+    },
+    isEvent: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        default: false
     }
 });
 
