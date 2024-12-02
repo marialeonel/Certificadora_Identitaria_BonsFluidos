@@ -1,0 +1,3 @@
+<Button onClick={() => setModalIsOpen(true)}>Criar Post</Button>
+      {modalIsOpen && <ModalForm onClose={handleClose} action={'Criação'}/>}
+      

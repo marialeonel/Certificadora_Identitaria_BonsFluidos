@@ -1,13 +1,20 @@
-import { useNavigate } from 'react-router-dom'
-import ModalForm from '../../components/ModalForm/ModalForm';
+
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header'
+import Sonic from '../../assets/png-transparent-sonic-3d-sonic-chaos-foot-tails-sonic-drive-in-hedgehog-miscellaneous-animals-sonic-the-hedgehog-thumbnail.png'
+
+
 
 function Home() {
-  const navigate = useNavigate()
+
 
   return (
-    <div className='flex bg-rose-800 w-full max-h-full'>
-      <h1>Bem-vindo à Landing Page</h1>
-      <button onClick={() => navigate('/blog')}>Acessar Blog</button>
+    <div className='flex flex-col min-h-screen'>
+      <Header/>
+      <main>
+        <img src={Sonic} alt="" />
+      </main>
+      <Footer/>
     </div>
   );
 }
