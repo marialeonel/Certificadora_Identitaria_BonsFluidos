@@ -26,18 +26,43 @@ function Home() {
               <button>Contate-nos</button>
             </div>
             <div>
-              <img src={Mao} alt="" className='h-16'/>
+              <img src={Mao} alt="" className='h-auto'/>
             </div>
           </div>
         </div>
         <div>
           <div>
+          <h2 className='text-2xl font-semibold mb-4 text-center'>NOSSOS OBJETIVOS</h2>
 
           </div>
           <div>
             <span>Diálogo sobre menstruação</span>
             <span>Naturalizar a menstruação e seu ciclo</span>
             <span>Combater pobreza menstrual</span>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div>
+              
+              <img src='' alt='' />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div>
+              
+              <img src='' alt='' />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div>
+              
+              <img src='' alt='' />
+            </div>
           </div>
         </div>
       </main>
