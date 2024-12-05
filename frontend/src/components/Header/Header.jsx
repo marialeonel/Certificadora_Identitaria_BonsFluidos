@@ -38,6 +38,7 @@ const Header = () => {
                   Contato
                   </button>
                   <button
+                  onClick={() => navigate('/agenda')}
                   className="text-black hover:bg-rose-600 hover:text-white transition duration-300 px-3 py-2 rounded-3xl text-sm font-medium">
                   Eventos
                   </button>
