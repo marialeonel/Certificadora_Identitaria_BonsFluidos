@@ -14,6 +14,7 @@ const Header = () => {
                             className="h-10 max-h-screen w-auto"
                             src={BonsFluidosLogo}
                             alt="Bons fluídos logo"
+                            onClick={() => navigate('/')}
                         />
                   </div>
               </div>
@@ -21,6 +22,7 @@ const Header = () => {
               <div className="hidden sm:block sm:ml-6">
                 <div className="flex space-x-4">
                   <button
+                  onClick={() => navigate('/')}
                   className="text-black hover:bg-rose-600 hover:text-white transition duration-300 px-3 py-2 rounded-3xl text-sm font-medium">
                   Home
                   </button>
