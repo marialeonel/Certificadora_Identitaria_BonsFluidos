@@ -2,7 +2,6 @@ import React from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import PostPreview from "../../components/PostPreview/PostPreview";
-import CloseButton from "../../components/CloseButton/CloseButton";
 
 const Agenda = () => {
   const events = [
