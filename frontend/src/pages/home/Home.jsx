@@ -9,7 +9,7 @@ function Home() {
   return (
     <div className='flex flex-col min-h-screen'>
       <Header/>
-      <main>
+      <main className='pt-14'>
         <div className='max-w-7xl mx-auto px-12 sm:px-6 lg:px-8 py-20'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
             <div>
@@ -69,7 +69,7 @@ function Home() {
           </div>
         </div>
         <div className=''>
-        <h1 className='text-2xl font-semibold py-6 text-center'>DOAÇÕES</h1>
+        <h1 className='text-2xl font-semibold py-6 text-center' id='doacoes'>DOAÇÕES</h1>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
             <div>
               <img src={AbsDelicado} alt='' />

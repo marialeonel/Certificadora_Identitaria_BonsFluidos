@@ -4,8 +4,28 @@ import BonsFluidosLogo from '../../assets/bonsfluidoslogo.png'
 const Header = () => {
     const navigate = useNavigate();
 
+    const handleNavigateToDoacoes = () => {
+      navigate('/')
+      setTimeout(() => {
+          const element = document.getElementById('doacoes')
+          if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+          }
+      }, 100)
+    }
+
+    const handleNavigateToContato = () => {
+      navigate('/')
+      setTimeout(() => {
+          const element = document.getElementById('footer')
+          if (element) {
+              element.scrollIntoView({ behavior: 'smooth' })
+          }
+      }, 100)
+    }
+
     return(
-        <header className='bg-slate-50 w-full'>
+        <header className='fixed bg-slate-50 w-full'>
         <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>
           <div className='relative flex items-center justify-between h-16'>
               <div className='flex justify-center items-center h-screen'>
@@ -32,10 +52,12 @@ const Header = () => {
                   Blog
                   </button>
                   <button
+                  onClick={handleNavigateToDoacoes}
                   className="text-black hover:bg-rose-600 hover:text-white transition duration-300 px-3 py-2 rounded-3xl text-sm font-medium">
                   Doações
                   </button>
                   <button
+                  onClick={handleNavigateToContato}
                   className="text-black hover:bg-rose-600 hover:text-white transition duration-300 px-3 py-2 rounded-3xl text-sm font-medium">
                   Contato
                   </button>
