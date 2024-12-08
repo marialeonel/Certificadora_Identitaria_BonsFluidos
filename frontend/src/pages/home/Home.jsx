@@ -72,7 +72,7 @@ function Home() {
         <h1 className='text-2xl font-semibold py-6 text-center' id='doacoes'>DOAÇÕES</h1>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
             <div>
-              <img src={AbsDelicado} alt='' />
+              <img src={AbsDelicado} alt='' className='transition-transform duration-300 hover:scale-110'/>
             </div>
             <div className='mr-14'>
               <p className='mb-4 text-justify'>O projeto Bons Fluidos tem como objetivo levar dignidade 
