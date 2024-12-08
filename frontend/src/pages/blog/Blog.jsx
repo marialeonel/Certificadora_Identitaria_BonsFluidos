@@ -32,7 +32,7 @@ function Blog() {
   return (
     <>
     <Header/>
-    <div>
+    <div className='pt-14'>
         <div className="bg-logo-color p-20">
           <h1 className="text-4xl font-bold text-center mb-3 text-white">
             BLOG
