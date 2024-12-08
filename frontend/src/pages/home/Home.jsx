@@ -22,19 +22,23 @@ function Home() {
               <p className='mb-4 text-justify'>
               Se sua escola tem interesse em abrir esse diálogo, entre em contato conosco!
               </p>
-              <Button className='bg-rose-900 text-white font-bold px-1 py-2 rounded-3xl w-48 text-center shadow-lg hover:bg-red-600 hover:border-none transition duration-300' >Contate-nos</Button>
+              <div className='flex justify-center'>
+                <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-600 transition duration-300' >Contate-nos</Button>
+              </div>
             </div>
             <div>
-              <img src={Mao} alt="" className='h-auto'/>
+              <img src={Mao} alt="Mão segurando um absorvente" className='h-96'/>
             </div>
           </div>
         </div>
+        <div className='flex justify-center'>
+            <h2 className='text-2xl font-semibold mb-4 text-center'>NOSSOS OBJETIVOS</h2>
+          </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-          <div>
-            <img src={GirlFlower} alt='Desenho de uma garota segurando uma flor' className='h-60 ml-80 transition-transform duration-300 hover:scale-110' />
+          <div className='flex justify-center'>
+            <img src={GirlFlower} alt='Desenho de uma garota segurando uma flor' className='h-80 ml-80 transition-transform duration-300 hover:scale-110' />
           </div>
           <div className='grid grid-cols-1'>
-            <h2 className='text-2xl font-semibold mb-4 text-center'>NOSSOS OBJETIVOS</h2>
             <span className='mb-4 text-justify'>Diálogo sobre menstruação</span>
             <span className='mb-4 text-justify'>Naturalizar a menstruação e seu ciclo</span>
             <span className='mb-4 text-justify'>Combater pobreza menstrual</span>
@@ -45,8 +49,8 @@ function Home() {
             <div>
             <h2 className='text-2xl font-semibold py-6 text-center'>ÚLTIMAS NOTÍCIAS</h2>
             </div>
-            <div>
-            <Button>Ver mais</Button>
+            <div className='flex justify-center'>
+            <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-400 transition duration-300'>Ver mais</Button>
             </div>
           </div>
         </div>
@@ -71,10 +75,10 @@ function Home() {
         <div className=''>
         <h1 className='text-2xl font-semibold py-6 text-center' id='doacoes'>DOAÇÕES</h1>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-            <div>
-              <img src={AbsDelicado} alt='' className='transition-transform duration-300 hover:scale-110'/>
+            <div className='flex justify-center'>
+              <img src={AbsDelicado} alt='' className='h-96 ml-36 transition-transform duration-300 hover:scale-110'/>
             </div>
-            <div className='mr-14'>
+            <div className='mr-40'>
               <p className='mb-4 text-justify'>O projeto Bons Fluidos tem como objetivo levar dignidade 
                 para meninas que têm o direito à educação prejudicado por 
                 menstruarem, seja pela falta de absorventes ou por não 
@@ -86,7 +90,9 @@ function Home() {
               <p className='mb-4 text-justify'>Se sua escola tem interesse em abrir esse diálogo, 
                 entre em contato conosco!
               </p>
-              <Button>QUERO AJUDAR!</Button>
+              <div className='flex justify-center'>
+                <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-600 transition duration-300'>QUERO AJUDAR!</Button>
+              </div>
             </div>
           </div>
         </div>
