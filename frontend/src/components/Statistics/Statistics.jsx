@@ -15,7 +15,7 @@ function Statistics() {
   ];
 
   return (
-    <div className="bg-gray-300 p-8 flex flex-col sm:flex-row justify-around items-center text-center space-y-6 sm:space-y-0">
+    <div className="bg-rose-700 p-8 flex flex-col sm:flex-row justify-around items-center text-center py-32 space-y-6 sm:space-y-0">
       {stats.map((stat, index) => (
         <div key={index} className="text-white">
           <p className="text-3xl font-bold">{stat.value}</p>
