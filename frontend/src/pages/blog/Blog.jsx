@@ -11,24 +11,22 @@ import ModalForm from '../../components/ModalForm/ModalForm'
 import { AuthContext } from '../../context/AuthContext'
 
 function Blog() {
-  const [events, setEvents] = useState([])
+  const [posts, setPosts] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const { isAuthenticated } = useContext(AuthContext)
   const navigate = useNavigate()
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchPosts = async () => {
       try {
-        const response = await axiosService.get('/posts/all', {
-          headers: { isPublic: true },
-        })
-        setEvents(response.data)
+        const response = await axiosService.get('/posts/all')
+        setPosts(response.data.posts)
       } catch (error) {
         console.error('Erro ao buscar os eventos:', error)
       }
     };
 
-    fetchEvents();
+    fetchPosts();
   }, []);
 
   const handleNavigation = () => {
@@ -52,9 +50,9 @@ function Blog() {
           {isAuthenticated && <Button className='md:w-[200px] w-full' onClick={() => setModalIsOpen(true)}>+ Adicionar Novo Post</Button>}
         </div>
         <div className="flex flex-row flex-wrap justify-center gap-10 py-10 md:px-0 lg:px-20">
-          {events.length > 0 ? (
-            events.map((event) => (
-              <PostPreview key={event.id} post={event} />
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <PostPreview key={post.id} post={post} onClick={handleNavigation}/>
             ))
           ) : (
             <p className="text-center text-gray-500">Nenhum post encontrado.</p>
