@@ -8,6 +8,7 @@ import Statistics from '../../components/Statistics/Statistics';
 import { useEffect, useState } from 'react';
 import axiosService from '../../services/AxiosService';
 import PostPreview from '../../components/PostPreview/PostPreview';
+import ObjectiveList from '../../components/ObjectiveList/ObjectiveList';
 
 
 function Home() {
@@ -27,6 +28,13 @@ function Home() {
 
     fetchEvents();
   }, []);
+
+  const objectives = [
+    "Levar dignidade as mulheres",
+    "Combater a pobreza menstrual",
+    "Educar sobre a saúde íntima",
+    "Distribuir absorventes gratuitos",
+  ]
 
   return (
     <div className='flex flex-col min-h-screen'>
@@ -61,9 +69,7 @@ function Home() {
             <img src={GirlFlower} alt='Desenho de uma garota segurando uma flor' className='h-80 ml-80 transition-transform duration-300 hover:scale-110' />
           </div>
           <div className='grid grid-cols-1'>
-            <span className='mb-4 text-justify'>Diálogo sobre menstruação</span>
-            <span className='mb-4 text-justify'>Naturalizar a menstruação e seu ciclo</span>
-            <span className='mb-4 text-justify'>Combater pobreza menstrual</span>
+            <ObjectiveList objectives={objectives} />
           </div>
         </div>
         <div className='bg-rose-600 w-full h-96 mt-10'>
