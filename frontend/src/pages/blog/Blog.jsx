@@ -38,7 +38,7 @@ function Blog() {
   return (
     <>
     <Header/>
-    <div className='pt-14'>
+    <div className='pt-14 min-h-screen'>
         <div className="bg-logo-color p-20">
           <h1 className="text-4xl font-bold text-center mb-3 text-white">
             BLOG

@@ -15,7 +15,6 @@ const Header = () => {
     }
 
     const handleNavigateToContato = () => {
-      navigate('/')
       setTimeout(() => {
           const element = document.getElementById('footer')
           if (element) {
