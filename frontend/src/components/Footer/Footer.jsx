@@ -2,7 +2,7 @@ import BonsFluidosLogo from '../../assets/bonsfluidoslogo.png'
 
 const Footer = () => {
     return (
-        <footer className="absolute bottom-0 flex flex-col w-full py-4 border-t shadow-black items-center justify-center bg-rose-900 lg:text-left" id='footer'>
+        <footer className="relative bottom-0 flex flex-col w-full py-4 border-t shadow-black items-center justify-center bg-rose-900 lg:text-left" id='footer'>
                 <div className='flex flex-row justify-center w-[90%] py-10'>
                   <div className='grid grid-cols-1 md:grid-cols-3 items-center gap-[60px] md:gap-8'>
                     <div className='flex flex-col justify-center'>
