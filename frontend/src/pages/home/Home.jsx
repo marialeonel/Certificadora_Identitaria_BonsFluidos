@@ -57,7 +57,7 @@ function Home() {
               </div>
             </div>
             <div>
-              <img src={Mao} alt="Mão segurando um absorvente" className='h-96'/>
+              <img src={Mao} alt="Mão segurando um absorvente" className='h-auto'/>
             </div>
           </div>
         </div>
