@@ -8,6 +8,7 @@ function ModalForm({ onClose, action, post }) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [category, setCategory] = useState('post')
+    const [image, setImage] = useState(null)
 
     useEffect(() => {
         if(action === 'Edição'){
@@ -58,11 +59,7 @@ function ModalForm({ onClose, action, post }) {
     function handleImageChange(e) {
         const file = e.target.files[0]
         if (file) {
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                setImage(reader.result)
-            }
-            reader.readAsDataURL(file)
+            setImage(file)
         }
     }
 
@@ -88,7 +85,7 @@ function ModalForm({ onClose, action, post }) {
                     <input type="file" accept='image/*' className='break-words' onChange={handleImageChange}/>
                 </div>
                 <div>
-                    <Button type={'submit'} className={'mt-10'} onClick={action === 'Criação' ? handleCriar : handleEditar}>Salvar</Button>
+                    <Button type={'button'} className={'mt-10'} onClick={action === 'Criação' ? handleCriar : handleEditar}>Salvar</Button>
                 </div>
             </form>
         </div>
