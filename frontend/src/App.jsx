@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import Blog from "./pages/blog/Blog";
 import Login from "./pages/login/Login";
 import Agenda from "./pages/agenda/Agenda";
+import Post from "./pages/post/Post";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/agenda" element={<Agenda />} />
+          <Route path="/post" element={<Post />} />
         </Routes>
       </Router>
     </AuthProvider>

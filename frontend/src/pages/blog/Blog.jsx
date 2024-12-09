@@ -3,7 +3,7 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-import searchIcon from '../../assets/search.svg'
+import searchIcon from '../../assets/search.svg';
 import PostPreview from '../../components/PostPreview/PostPreview';
 import {useState, useEffect, useContext} from 'react'
 import axiosService from '../../services/AxiosService'
@@ -30,6 +30,10 @@ function Blog() {
 
     fetchEvents();
   }, []);
+
+  const handleNavigation = () => {
+      navigate('/post')
+  }
 
   return (
     <>

@@ -1,11 +1,41 @@
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header'
-import  Mao from '../../assets/mao_segurando_abs.jpg'
+import Mao from '../../assets/mao_segurando_abs.jpg'
 import Button from '../../components/Button/Button';
 import GirlFlower from '../../assets/girlwithflower.png';
 import AbsDelicado from '../../assets/absdelicado.png';
+import Statistics from '../../components/Statistics/Statistics';
+import { useEffect, useState } from 'react';
+import axiosService from '../../services/AxiosService';
+import PostPreview from '../../components/PostPreview/PostPreview';
+import ObjectiveList from '../../components/ObjectiveList/ObjectiveList';
+
 
 function Home() {
+  const [events, setEvents] = useState([])
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axiosService.get('/public-endpoint', {
+          headers: { isPublic: true },
+        })
+        setEvents(response.data)
+      } catch (error) {
+        console.error('Erro ao buscar os eventos:', error)
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  const objectives = [
+    "Levar dignidade as mulheres",
+    "Combater a pobreza menstrual",
+    "Educar sobre a saúde íntima",
+    "Distribuir absorventes gratuitos",
+  ]
+
   return (
     <div className='flex flex-col min-h-screen'>
       <Header/>
@@ -22,59 +52,55 @@ function Home() {
               <p className='mb-4 text-justify'>
               Se sua escola tem interesse em abrir esse diálogo, entre em contato conosco!
               </p>
-              <Button className='bg-rose-900 text-white font-bold px-1 py-2 rounded-3xl w-48 text-center shadow-lg hover:bg-red-600 hover:border-none transition duration-300' >Contate-nos</Button>
+              <div className='flex justify-center'>
+                <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-600 transition duration-300' >Contate-nos</Button>
+              </div>
             </div>
             <div>
-              <img src={Mao} alt="" className='h-auto'/>
+              <img src={Mao} alt="Mão segurando um absorvente" className='h-auto'/>
             </div>
           </div>
         </div>
+        <div className='flex justify-center'>
+            <h2 className='text-2xl font-semibold mb-4 text-center'>NOSSOS OBJETIVOS</h2>
+          </div>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-          <div>
-            <img src={GirlFlower} alt='Desenho de uma garota segurando uma flor' className='h-60 ml-80 transition-transform duration-300 hover:scale-110' />
+          <div className='flex justify-center'>
+            <img src={GirlFlower} alt='Desenho de uma garota segurando uma flor' className='h-80 ml-80 transition-transform duration-300 hover:scale-110' />
           </div>
           <div className='grid grid-cols-1'>
-            <h2 className='text-2xl font-semibold mb-4 text-center'>NOSSOS OBJETIVOS</h2>
-            <span className='mb-4 text-justify'>Diálogo sobre menstruação</span>
-            <span className='mb-4 text-justify'>Naturalizar a menstruação e seu ciclo</span>
-            <span className='mb-4 text-justify'>Combater pobreza menstrual</span>
+            <ObjectiveList objectives={objectives} />
           </div>
         </div>
         <div className='bg-rose-600 w-full h-96 mt-10'>
           <div>
             <div>
             <h2 className='text-2xl font-semibold py-6 text-center'>ÚLTIMAS NOTÍCIAS</h2>
+            <div className="flex flex-row flex-wrap justify-center gap-10 py-10 md:px-0 lg:px-20">
+              {events.length > 0 ? (
+                events.slice(0,4).map((event) => (
+                  <PostPreview key={event.id} post={event} />
+                ))
+              ) : (
+                <p className="text-center text-white">Nenhum post encontrado.</p>
+              )}
             </div>
-            <div>
-            <Button>Ver mais</Button>
+            </div>
+            <div className='flex justify-center'>
+            <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-400 transition duration-300'>Ver mais</Button>
             </div>
           </div>
         </div>
         <div className='bg-rose-700 w-full h-96'>
-          <div className='mr-4 ml-4 py-20'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 items-center px-8'>
-              <div>
-                <h1 className='text-white text-8xl text-center'>+1.8 <span className='text-6xl'>bi</span></h1>
-                <p className='text-center'>De pessoas menstruam em todo planeta</p>
-              </div>
-              <div>
-                <h1 className='text-white text-8xl text-center'>+4 <span className='text-6xl'>mi</span></h1>
-                <p className='text-center'>De pessoas não tem acesso a itens de cuidado menstruais</p>
-              </div>
-              <div>
-                <h1 className='text-white text-8xl text-center'> 713 <span className='text-6xl'>mil</span></h1>
-                <p className='text-center'>De pessoas que menstruam vivem sem acesso a banheiro em casa</p>
-              </div>  
-            </div>
-          </div>
+          <Statistics className='' />
         </div>
         <div className=''>
         <h1 className='text-2xl font-semibold py-6 text-center' id='doacoes'>DOAÇÕES</h1>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-            <div>
-              <img src={AbsDelicado} alt='' />
+            <div className='flex justify-center'>
+              <img src={AbsDelicado} alt='' className='h-96 ml-36 transition-transform duration-300 hover:scale-110'/>
             </div>
-            <div className='mr-14'>
+            <div className='mr-40'>
               <p className='mb-4 text-justify'>O projeto Bons Fluidos tem como objetivo levar dignidade 
                 para meninas que têm o direito à educação prejudicado por 
                 menstruarem, seja pela falta de absorventes ou por não 
@@ -86,7 +112,9 @@ function Home() {
               <p className='mb-4 text-justify'>Se sua escola tem interesse em abrir esse diálogo, 
                 entre em contato conosco!
               </p>
-              <Button>QUERO AJUDAR!</Button>
+              <div className='flex justify-center'>
+                <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-600 transition duration-300'>QUERO AJUDAR!</Button>
+              </div>
             </div>
           </div>
         </div>
