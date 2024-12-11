@@ -24,10 +24,12 @@ function ModalForm({ onClose, action, post }) {
     }, [post])
 
     const handleCriar = async () => {
+        const isEvent = category === 'Post' ? false : true
         const newPost = {
             title: title,
             content: content,
-            isEvent: category
+            isEvent: isEvent,
+            image: image
         }
         try{
             if(newPost){
