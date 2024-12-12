@@ -7,7 +7,7 @@ function PostPreview({ post }) {
             <img crossorigin="anonymous" src={imageUrl} className='w-full h-[300px] transition-all duration-300 rounded-lg group-hover:rounded-b-none'/>
             <div className='flex flex-col h-[150px] justify-center items-center px-3 gap-6'>
                 <h1 className='text-xl font-bold'>{post.title}</h1>
-                <div className='flex w-[100%] justify-between text-sm text-gray-500'>
+                <div className='flex w-[100%] justify-between text-sm text-dark'>
                     <p>By <span className='font-bold'>Bons Fluidos</span></p>
                     <p className='uppercase'>{post.createdAt}</p>
                 </div>

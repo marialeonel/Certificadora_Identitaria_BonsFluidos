@@ -25,19 +25,25 @@ function ModalForm({ onClose, action, post }) {
 
     const handleCriar = async () => {
         const isEvent = category === 'post' ? 'false' : 'true'
-        const newPost = {
-            title: title,
-            content: content,
-            isEvent: isEvent,
-            imageUrl: image
+      
+        const formData = new FormData()
+        formData.append('title', title)
+        formData.append('content', content)
+        formData.append('isEvent', isEvent)
+        
+        if (image) {
+          formData.append('image', image)
         }
-        try{
-            if(newPost){
-                await axiosService.post('/posts/new-post', newPost);
-                onClose()
-            }
-        }catch(error){
-            console.error(error)
+      
+        try {
+          await axiosService.post('/posts/new-post', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+          onClose()
+        } catch (error) {
+          console.error(error)
         }
     }
 
