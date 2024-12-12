@@ -75,7 +75,7 @@ function Home() {
             <h2 className='text-2xl font-semibold py-6 text-center text-white'>ÚLTIMAS NOTÍCIAS</h2>
             <div className="flex flex-wrap gap-[32px] justify-center">
               {posts.length > 0 ? (
-                posts.slice(0,4).map((post) => (
+                posts.slice(0,4).reverse().map((post) => (
                   <LastPost key={post.id} post={post} />
                 ))
               ) : (

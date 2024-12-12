@@ -14,6 +14,8 @@ function Blog() {
   const [posts, setPosts] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const { isAuthenticated } = useContext(AuthContext)
+  const [postsFiltrados, setPostsFiltrados] = useState([])
+  const [busca, setBusca] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -29,8 +31,21 @@ function Blog() {
     fetchPosts();
   }, []);
 
+  useEffect(() => {
+    const filtrados = posts.filter((post) => 
+      post.title.toLowerCase().includes(busca.toLowerCase()) ||
+      post.content.toLowerCase().includes(busca.toLowerCase())
+    )
+
+    setPostsFiltrados(filtrados)
+  }, [postsFiltrados, posts])
+
   const handleNavigation = () => {
       navigate('/post')
+  }
+
+  const handleBusca = (e) => {
+    setBusca(e.target.value)
   }
 
   return (
@@ -46,12 +61,12 @@ function Blog() {
           </p>
         </div>
         <div className='flex md:flex-row flex-col justify-between gap-5 py-10 px-10 md:px-10 lg:px-[15%]'>
-          <Input className='md:w-[350px] w-full' placeholder='Pesquise aqui...' icon={searchIcon}></Input>
+          <Input className='md:w-[350px] w-full' placeholder='Pesquise aqui...' icon={searchIcon} onChange={handleBusca}></Input>
           {isAuthenticated && <Button className='md:w-[200px] w-full' onClick={() => setModalIsOpen(true)}>+ Adicionar Novo Post</Button>}
         </div>
         <div className="flex flex-row flex-wrap justify-center gap-10 py-10 md:px-0 lg:px-20">
-          {posts.length > 0 ? (
-            posts.map((post) => (
+          {postsFiltrados.length > 0 ? (
+            postsFiltrados.slice().reverse().map((post) => (
               <PostPreview key={post.id} post={post} onClick={handleNavigation}/>
             ))
           ) : (
