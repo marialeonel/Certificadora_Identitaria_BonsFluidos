@@ -34,7 +34,7 @@ const Agenda = () => {
           </p>
         </div>
         <div className="flex flex-row flex-wrap justify-center gap-10 p-20">
-          {events.map((event) => (
+          {events.slice().reverse().map((event) => (
             <PostPreview key={event.id} post={event} />
           ))}
         </div>
