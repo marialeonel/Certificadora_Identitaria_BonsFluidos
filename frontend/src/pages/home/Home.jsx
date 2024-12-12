@@ -7,26 +7,24 @@ import AbsDelicado from '../../assets/absdelicado.png';
 import Statistics from '../../components/Statistics/Statistics';
 import { useEffect, useState } from 'react';
 import axiosService from '../../services/AxiosService';
-import PostPreview from '../../components/PostPreview/PostPreview';
+import LastPost from '../../components/LastPost/LastPost'
 import ObjectiveList from '../../components/ObjectiveList/ObjectiveList';
 
 
 function Home() {
-  const [events, setEvents] = useState([])
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchPosts = async () => {
       try {
-        const response = await axiosService.get('/public-endpoint', {
-          headers: { isPublic: true },
-        })
-        setEvents(response.data)
+        const response = await axiosService.get('/posts/all')
+        setPosts(response.data.posts)
       } catch (error) {
         console.error('Erro ao buscar os eventos:', error)
       }
     };
 
-    fetchEvents();
+    fetchPosts();
   }, []);
 
   const objectives = [
@@ -72,29 +70,27 @@ function Home() {
             <ObjectiveList objectives={objectives} />
           </div>
         </div>
-        <div className='bg-rose-600 w-full h-96 mt-10'>
-          <div>
-            <div>
-            <h2 className='text-2xl font-semibold py-6 text-center'>ÚLTIMAS NOTÍCIAS</h2>
-            <div className="flex flex-row flex-wrap justify-center gap-10 py-10 md:px-0 lg:px-20">
-              {events.length > 0 ? (
-                events.slice(0,4).map((event) => (
-                  <PostPreview key={event.id} post={event} />
+        <div className='bg-rose-600 w-full mt-10'>
+          <div className='flex flex-col w-full'>
+            <h2 className='text-2xl font-semibold py-6 text-center text-white'>ÚLTIMAS NOTÍCIAS</h2>
+            <div className="flex flex-wrap gap-[32px] justify-center">
+              {posts.length > 0 ? (
+                posts.slice(0,4).map((post) => (
+                  <LastPost key={post.id} post={post} />
                 ))
               ) : (
                 <p className="text-center text-white">Nenhum post encontrado.</p>
               )}
             </div>
-            </div>
-            <div className='flex justify-center'>
-            <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-400 transition duration-300'>Ver mais</Button>
-            </div>
+          </div>
+          <div className='flex justify-center'>
+            <Button className='bg-rose-900 text-white w-[200px] hover:bg-rose-400 transition duration-300 my-8'>Ver mais</Button>
           </div>
         </div>
-        <div className='bg-rose-700 w-full h-96'>
-          <Statistics className='' />
+        <div className='bg-rose-700 w-full'>
+          <Statistics />
         </div>
-        <div className=''>
+        <div>
         <h1 className='text-2xl font-semibold py-6 text-center' id='doacoes'>DOAÇÕES</h1>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
             <div className='flex justify-center'>
