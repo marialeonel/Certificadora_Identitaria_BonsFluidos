@@ -21,19 +21,19 @@ function ModalForm({ onClose, action, post }) {
                 setCategory('post')
             }
         }
-    }, [post])
+    }, [])
 
     const handleCriar = async () => {
-        const isEvent = category === 'Post' ? false : true
+        const isEvent = category === 'post' ? 'false' : 'true'
         const newPost = {
             title: title,
             content: content,
             isEvent: isEvent,
-            image: image
+            imageUrl: image
         }
         try{
             if(newPost){
-                await axiosService.post(newPost)
+                await axiosService.post('/posts/new-post', newPost);
                 onClose()
             }
         }catch(error){
