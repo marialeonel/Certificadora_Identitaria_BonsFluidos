@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import Kirby from "../../assets/kirby.jpg"
-
+import Kirby from "../../assets/kirby.jpg";
+import Button from "../../components/Button/Button";
+import AuthContext from "../../context/AuthContext"
+import { useContext } from "react";
 
 function Post () {
+
+    const { isAuthenticated } = useContext(AuthContext)
+
     return (
         <>
         <div className="flex flex-col min-h-screen">
@@ -12,7 +17,13 @@ function Post () {
                 <main className="flex-grow py-10 px-12">
                     <div className="pt-20 px-4 lg:px-20">
                         <div className="max-x-screen-lg mx-auto py-10 px-6">
-                            <div className="text-center mb-6">
+                            {isAuthenticated && <div className="flex flex-col sm:flex-row gap-4 justify-end mb-4">
+                            <Button className='bg-red-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-red-600 transition duration-300' >Excluir</Button>
+                            <Button className='bg-gray-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-gray-600 transition duration-300' >Editar</Button>
+                            </div>
+                            }
+                            
+                            <div className="text-center mb-8">
                                 <h1 className="text-4xl font-bold text-gray-800">Título de Notícia do Blog do Bons Fluídos</h1>
                             </div>
                             <div className="flex flex-col-1 gap-96 mb-8 text-gray-600 justify-center">
