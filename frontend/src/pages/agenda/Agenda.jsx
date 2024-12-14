@@ -2,49 +2,27 @@ import React from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import PostPreview from "../../components/PostPreview/PostPreview";
+import { useState, useEffect } from 'react'
+import axiosService from '../../services/AxiosService'
 
 const Agenda = () => {
-  const events = [
-    {
-      id: 1,
-      title: "Workshop de Identidade",
-      createdAt: "2024-12-10",
-      imageUrl: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      title: "Palestra: Autenticidade e Fluidez",
-      createdAt: "2024-12-15",
-      imageUrl: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      title: "Palestra: Autenticidade e Fluidez",
-      createdAt: "2024-12-15",
-      imageUrl: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      title: "Palestra: Autenticidade e Fluidez",
-      createdAt: "2024-12-15",
-      imageUrl: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      title: "Palestra: Autenticidade e Fluidez",
-      createdAt: "2024-12-15",
-      imageUrl: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      title: "Palestra: Autenticidade e Fluidez",
-      createdAt: "2024-12-15",
-      imageUrl: "https://via.placeholder.com/150",
-    },
-  ];
+  const [events, setEvents] = useState([])
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axiosService.get('/posts/all-events')
+        setEvents(response.data.posts)
+      } catch (error) {
+        console.error('Erro ao buscar os eventos:', error)
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen mb-[260px]">
       <Header />
       <main className="flex-grow pt-14">
         <div className="bg-logo-color p-20">
@@ -56,7 +34,7 @@ const Agenda = () => {
           </p>
         </div>
         <div className="flex flex-row flex-wrap justify-center gap-10 p-20">
-          {events.map((event) => (
+          {events.slice().reverse().map((event) => (
             <PostPreview key={event.id} post={event} />
           ))}
         </div>

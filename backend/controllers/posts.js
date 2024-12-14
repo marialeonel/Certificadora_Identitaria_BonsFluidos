@@ -11,14 +11,15 @@ const upload = multer({ storage: storage });
 router.post('/new-post', checkToken, upload.single('image'), async (req, res) => {
   try {
     const { title, content } = req.body;
+    const isEvent = req.body.isEvent === 'true'
     const imageUrl = req.file ? req.file.filename : null;
-
-    const post = await Post.create({ title, content, imageUrl });
+    
+    const post = await Post.create({ title, content, imageUrl, isEvent });
     handleResponse(res, 201, `Post created: ${post.id}`, post);
   } catch (error) {
     if (error.name === 'SequelizeValidationError') {
       const messages = error.errors.map(err => err.message);
-      handleResponse(res, 400, `Validation error: ${messages}`, { errors: messages });
+      handleResponse(res, 400, `Validation error: ${messages}`, { errors: messages});
     } else {
       handleResponse(res, 500, `Error creating post: ${error.message}`);
     }
@@ -39,6 +40,31 @@ router.get('/all', async (req, res) => {
     const totalPages = Math.ceil(totalPosts / limit);
 
     handleResponse(res, 200, 'Fetched posts with pagination', {
+      posts,
+      page,
+      totalPages,
+      totalPosts,
+    });
+  } catch (error) {
+    handleResponse(res, 500, `Error fetching posts: ${error.message}`);
+  }
+});
+
+router.get('/all-events', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = 10; 
+    const offset = (page - 1) * limit; 
+
+    const { rows: posts, count: totalPosts } = await Post.findAndCountAll({
+      where: { isEvent: true},
+      limit,
+      offset,
+    });
+
+    const totalPages = Math.ceil(totalPosts / limit);
+
+    handleResponse(res, 200, 'Fetched event posts with pagination', {
       posts,
       page,
       totalPages,

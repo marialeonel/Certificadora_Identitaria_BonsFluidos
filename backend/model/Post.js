@@ -33,8 +33,8 @@ const Post = sequelize.define('Post', {
     },
     isEvent: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        default: false
+        allowNull: true,
+        defaultValue: false,
     }
 });
 
