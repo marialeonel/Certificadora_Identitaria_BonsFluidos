@@ -18,16 +18,16 @@ function Blog() {
   const [busca, setBusca] = useState('')
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axiosService.get('/posts/all')
-        setPosts(response.data.posts)
-      } catch (error) {
-        console.error('Erro ao buscar os eventos:', error)
-      }
-    };
+  const fetchPosts = async () => {
+    try {
+      const response = await axiosService.get('/posts/all')
+      setPosts(response.data.posts)
+    } catch (error) {
+      console.error('Erro ao buscar os eventos:', error)
+    }
+  }
 
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -73,7 +73,7 @@ function Blog() {
             <p className="text-center text-gray-500">Nenhum post encontrado.</p>
           )}
         </div>
-        {modalIsOpen && <ModalForm onClose={() => setModalIsOpen(false)} action={'Criação'}></ModalForm>}
+        {modalIsOpen && <ModalForm onClose={() => setModalIsOpen(false)} action={'Criação'} fetch={fetchPosts}></ModalForm>}
     </div>
     <Footer/>
     </>
