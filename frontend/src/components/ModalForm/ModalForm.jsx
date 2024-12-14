@@ -4,7 +4,7 @@ import Textarea from '../Textarea/Textarea'
 import { useState, useEffect } from 'react'
 import axiosService from '../../services/AxiosService'
 
-function ModalForm({ onClose, action, post }) {
+function ModalForm({ onClose, action, post, fetch }) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [category, setCategory] = useState('post')
@@ -42,6 +42,7 @@ function ModalForm({ onClose, action, post }) {
             },
           })
           onClose()
+          await fetch()
         } catch (error) {
           console.error(error)
         }
