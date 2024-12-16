@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
@@ -10,6 +10,7 @@ import axiosService from '../../services/AxiosService'
 import ModalForm from '../../components/ModalForm/ModalForm'
 import { AuthContext } from '../../context/AuthContext'
 
+
 function Blog() {
   const [posts, setPosts] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -17,6 +18,10 @@ function Blog() {
   const [postsFiltrados, setPostsFiltrados] = useState([])
   const [busca, setBusca] = useState('')
   const navigate = useNavigate()
+  const { id } = useParams()
+  const postId = Number(id)  
+
+
 
   const fetchPosts = async () => {
     try {
@@ -47,6 +52,22 @@ function Blog() {
   const handleBusca = (e) => {
     setBusca(e.target.value)
   }
+
+  useEffect(() => {
+    const getPost = async (id) => {
+      if (!id) return; 
+      try {
+        const response = await axiosService.get(`/posts/${id}`);
+        setPost(response.data); 
+      } catch (error) {
+        console.error('Erro ao buscar o post:', error);
+        handleNavigation(); 
+      }
+    };
+  
+    getPost(postId); 
+  }, [postId]);
+  
 
   return (
     <>
