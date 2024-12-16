@@ -15,7 +15,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/agenda" element={<Agenda />} />
-          <Route path="/post" element={<Post />} />
+          <Route path="/post/:id" element={<Post />} />
         </Routes>
       </Router>
     </AuthProvider>
