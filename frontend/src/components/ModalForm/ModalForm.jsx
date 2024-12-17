@@ -21,7 +21,7 @@ function ModalForm({ onClose, action, post, fetch }) {
                 setCategory('post')
             }
         }
-    }, [])
+    }, [action, post])
 
     const handleCriar = async () => {
         const isEvent = category === 'post' ? 'false' : 'true'
@@ -49,19 +49,30 @@ function ModalForm({ onClose, action, post, fetch }) {
     }
 
     const handleEditar = async () => {
-        const updatedPost = {
-            id: post.id,
-            title: title,
-            content: content,
-            isEvent: category
+        const isEvent = category === 'post' ? 'false' : 'true'
+    
+        const formData = new FormData()
+        formData.append('title', title)
+        formData.append('content', content)
+        formData.append('isEvent', isEvent)
+    
+        if (image) {
+            formData.append('image', image)
+        } else {
+            formData.append('imageUrl', post.imageUrl)
         }
+    
         try {
-            if(updatedPost && post.id !== undefined) {
-                await axiosService.put(post.id, updatedPost)
-                onClose()
-            }
-        }catch(error){
-            console.error(error)
+            await axiosService.put(`/posts/${post.id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+    
+            onClose()
+            await fetch()
+        } catch (error) {
+            console.error("Erro ao editar o post", error)
         }
     }
 

@@ -10,12 +10,14 @@ import { ptBR } from 'date-fns/locale'
 import { useParams } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.png'
 import editIcon from '../../assets/edit.png'
+import ModalForm from "../../components/ModalForm/ModalForm";
 
 function Post () {
     const { isAuthenticated } = useContext(AuthContext)
     const { id } = useParams()
     const navigate = useNavigate()
     const [post, setPost] = useState(null)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
     
     useEffect(() => {
         const getPost = async (id) => {
@@ -40,12 +42,23 @@ function Post () {
         const date = new Date(data)
         return format(date, "dd, MMM 'de' yyyy", { locale: ptBR })
     }
-
+ 
     if (!post) {
         return <div>Carregando...</div>;
     }
     const baseUrl = "http://localhost:3000/uploads/";
     const imageUrl = `${baseUrl}${post.imageUrl}`;
+    
+    const excluirPost = async (id) => {
+        try {
+            await axiosService.delete(`/posts/${id}`)
+            setPost(null)
+            handleNavigate()
+        } catch (error) {
+            handleNavigate()
+            console.error(error)
+        }
+    }
 
     return (
         <>
@@ -55,11 +68,10 @@ function Post () {
                     <div className="pt-20 px-4 lg:px-64">
                         <div className="flex flex-col justify-center items-end max-x-screen-lg mx-auto py-10 px-6">
                             {isAuthenticated && <div className="flex flex-col sm:flex-row gap-4 justify-end mb-4">
-                                <Button className='bg-red-600' icon={deleteIcon}>Excluir</Button>
-                                <Button className='bg-gray-500' icon={editIcon}>Editar</Button>
+                                <Button className='bg-red-600' icon={deleteIcon} onClick={() => excluirPost(post.id)}>Excluir</Button>
+                                <Button className='bg-gray-500' icon={editIcon} onClick={() => setModalIsOpen(true)}>Editar</Button>
                             </div>
-                            }
-                            
+                            }     
                             <div className='flex flex-col justify-center items-center'>
                                 <h1 className="text-4xl font-bold text-gray-800 mb-4">{post.title}</h1>
                                 <div className="flex w-full justify-between text-gray-600">
@@ -69,13 +81,14 @@ function Post () {
                                 <div>
                                     <img crossorigin="anonymous" src={imageUrl} className="w-auto max-w-lg h-auto bg-gray-200 rounded-md my-14"/>
                                 </div>
-                                <div className="text-justify text-gray-700">
+                                <div className="text-justify text-gray-700 text-wrap">
                                     {post.content}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
+                {modalIsOpen && <ModalForm onClose={() => setModalIsOpen(false)} action={'Edição'} post={post}></ModalForm>}
             <Footer />
         </div>
         

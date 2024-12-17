@@ -19,7 +19,7 @@ function PostPreview({ post, className }) {
     return (
         <div className='group w-[320px] max-w-[33,3%] hover:shadow-[0_4px_8px_rgba(0,0,0,0.2)] rounded-lg transition-shadow duration-300' onClick={handleNavigate}>
             <img crossorigin="anonymous" src={imageUrl} className='w-full h-[300px] transition-all duration-300 rounded-lg group-hover:rounded-b-none'/>
-            <div className='flex flex-col py-4 justify-center items-center px-3 gap-6'>
+            <div className='flex flex-col py-4 justify-between items-center px-3 gap-6'>
                 <h1 className='text-xl font-bold text-start'>{post.title}</h1>
                 <div className='flex w-[100%] justify-between text-sm text-dark'>
                     <p>By <span className='font-bold'>Bons Fluidos</span></p>

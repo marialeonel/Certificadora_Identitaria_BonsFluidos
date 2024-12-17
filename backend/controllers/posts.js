@@ -91,10 +91,14 @@ router.put('/:id', checkToken, upload.single('image'), async (req, res) => {
     const post = await Post.findByPk(req.params.id);
     if (!post) return handleResponse(res, 404, 'Post not found');
 
-    const { title, content } = req.body;
+    const { title, content, isEvent } = req.body;
     post.title = title || post.title;
     post.content = content || post.content;
+    if (isEvent !== undefined) {
+      post.isEvent = isEvent === 'true';
+    }
     post.imageUrl = req.file ? req.file.filename : post.imageUrl;
+    
     await post.save();
 
     handleResponse(res, 200, `Post updated: ${post.id}`, { message: 'Post successfully updated', post });
