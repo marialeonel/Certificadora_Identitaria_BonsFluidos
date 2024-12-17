@@ -2,17 +2,17 @@ import React from "react";
 
 function ObjectiveList({ objectives }) {
   return (
-    <ul className="space-y-4">
+    <div className="flex flex-col gap-8 mb-24">
       {objectives.map((objective, index) => (
-        <li key={index} className="flex items-center space-x-4">
-          <span className="flex items-center justify-center h-8 w-8 rounded-full border border-gray-400 text-gray-400">
+        <div key={index} className="flex gap-8">
+          <span className="flex items-center justify-center h-8 w-8 rounded-full text-logo-color">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              strokeWidth={2}
               stroke="currentColor"
-              className="h-6 w-6"
+              className="h-12 w-12"
             >
               <path
                 strokeLinecap="round"
@@ -21,10 +21,10 @@ function ObjectiveList({ objectives }) {
               />
             </svg>
           </span>
-          <span className="text-gray-900 font-medium">{objective}</span>
-        </li>
+          <p className="text-black font-medium">{objective}</p>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
 

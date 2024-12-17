@@ -24,8 +24,8 @@ const Agenda = () => {
   return (
     <div className="flex flex-col min-h-screen mb-[260px]">
       <Header />
-      <main className="flex-grow">
-        <div className="bg-logo-color p-32">
+      <main className="flex-grow mt-14">
+        <div className="bg-logo-color p-20">
           <h1 className="text-4xl font-bold text-center mb-3 text-white">
             EVENTOS
           </h1>

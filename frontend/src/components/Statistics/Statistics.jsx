@@ -15,11 +15,11 @@ function Statistics() {
   ];
 
   return (
-    <div className="bg-rose-700 p-8 flex flex-col sm:flex-row justify-around items-center text-center py-32 space-y-6 sm:space-y-0">
+    <div className="bg-rose-700 p-8 flex flex-col sm:flex-row gap-12 justify-center items-center text-center py-20">
       {stats.map((stat, index) => (
-        <div key={index} className="text-white">
-          <p className="text-3xl font-bold">{stat.value}</p>
-          <p className="text-sm mt-2">{stat.description}</p>
+        <div key={index} className="text-white w-auto max-w-[350px]">
+          <p className="text-5xl font-bold">{stat.value}</p>
+          <p className="mt-2">{stat.description}</p>
         </div>
       ))}
     </div>
