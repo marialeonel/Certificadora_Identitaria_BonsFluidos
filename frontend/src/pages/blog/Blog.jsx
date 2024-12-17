@@ -17,11 +17,6 @@ function Blog() {
   const { isAuthenticated } = useContext(AuthContext)
   const [postsFiltrados, setPostsFiltrados] = useState([])
   const [busca, setBusca] = useState('')
-  const navigate = useNavigate()
-  const { id } = useParams()
-  const postId = Number(id)  
-
-
 
   const fetchPosts = async () => {
     try {
@@ -43,31 +38,11 @@ function Blog() {
     )
 
     setPostsFiltrados(filtrados)
-  }, [postsFiltrados, posts])
-
-  const handleNavigation = () => {
-      navigate('/post')
-  }
+  }, [posts])
 
   const handleBusca = (e) => {
     setBusca(e.target.value)
   }
-
-  useEffect(() => {
-    const getPost = async (id) => {
-      if (!id) return; 
-      try {
-        const response = await axiosService.get(`/posts/${id}`);
-        setPost(response.data); 
-      } catch (error) {
-        console.error('Erro ao buscar o post:', error);
-        handleNavigation(); 
-      }
-    };
-  
-    getPost(postId); 
-  }, [postId]);
-  
 
   return (
     <>
@@ -85,14 +60,16 @@ function Blog() {
           <Input className='md:w-[350px] w-full' placeholder='Pesquise aqui...' icon={searchIcon} onChange={handleBusca}></Input>
           {isAuthenticated && <Button className='md:w-[200px] w-full' onClick={() => setModalIsOpen(true)}>+ Adicionar Novo Post</Button>}
         </div>
-        <div className="flex flex-row flex-wrap justify-center gap-10 py-10 md:px-0 lg:px-20">
-          {postsFiltrados.length > 0 ? (
-            postsFiltrados.slice().reverse().map((post) => (
-              <PostPreview key={post.id} post={post} onClick={handleNavigation}/>
-            ))
-          ) : (
-            <p className="text-center text-gray-500">Nenhum post encontrado.</p>
-          )}
+        <div className="flex w-[100%] h-auto justify-center items-center p-32">
+          <div className="flex flex-row flex-wrap justify-center items-center gap-16">
+            {postsFiltrados.length > 0 ? (
+              postsFiltrados.slice().reverse().map((post) => (
+                <PostPreview key={post.id} post={post}/>
+              ))
+            ) : (
+              <p className="text-center text-gray-500">Nenhum post encontrado.</p>
+            )}
+          </div>
         </div>
         {modalIsOpen && <ModalForm onClose={() => setModalIsOpen(false)} action={'Criação'} fetch={fetchPosts}></ModalForm>}
     </div>

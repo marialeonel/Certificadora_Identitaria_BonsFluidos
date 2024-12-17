@@ -73,14 +73,18 @@ function Home() {
         <div className='bg-rose-600 w-full mt-10'>
           <div className='flex flex-col w-full'>
             <h2 className='text-2xl font-semibold py-6 text-center text-white'>ÚLTIMAS NOTÍCIAS</h2>
-            <div className="flex flex-wrap gap-[32px] justify-center">
-              {posts.length > 0 ? (
-                posts.slice(0,4).reverse().map((post) => (
-                  <LastPost key={post.id} post={post} />
-                ))
-              ) : (
-                <p className="text-center text-white">Nenhum post encontrado.</p>
-              )}
+            <div className='flex justify-center items-center'>
+              <div className="max-w-[1200px] min-w-[150px] flex flex-wrap flex-row gap-8 justify-center">
+                {posts.length > 0 ? (
+                  posts.slice(0, 4).reverse().map((post) => (
+                    <LastPost key={post.id} post={post} />
+                  ))
+                ) : (
+                  <p className="text-center text-white col-span-2">
+                    Nenhum post encontrado.
+                  </p>
+                )}
+              </div>
             </div>
           </div>
           <div className='flex justify-center'>
