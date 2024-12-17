@@ -45,21 +45,3 @@ axiosService.interceptors.response.use(
 );
 
 export default axiosService;
-
-/* para rotas públicas: GET /all e 
-try {
-    const response = await axiosService.get('/public-endpoint', {
-      headers: { isPublic: true }, // especifica q é uma rota pública
-    });
-}
-  [...]
-*/
-
-
-/* para rotas protegidas:
-try {
-    const response = await axiosService.get('/protected-endpoint'); // sem `isPublic`, o token vai ser adicionado
-    console.log(response.data);
-  }
-    [...]
-*/

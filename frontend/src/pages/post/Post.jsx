@@ -23,7 +23,6 @@ function Post () {
         const getPost = async (id) => {
             try{
             const data = await axiosService.get(`/posts/${id}`)
-            console.log(data.data)
             setPost(data.data)
           }catch(error){
             handleNavigate()
