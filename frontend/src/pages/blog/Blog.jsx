@@ -38,7 +38,7 @@ function Blog() {
     )
 
     setPostsFiltrados(filtrados)
-  }, [posts])
+  }, [posts, busca])
 
   const handleBusca = (e) => {
     setBusca(e.target.value)
@@ -60,8 +60,8 @@ function Blog() {
           <Input className='md:w-[350px] w-full' placeholder='Pesquise aqui...' icon={searchIcon} onChange={handleBusca}></Input>
           {isAuthenticated && <Button className='md:w-[200px] w-full' onClick={() => setModalIsOpen(true)}>+ Adicionar Novo Post</Button>}
         </div>
-        <div className="flex w-[100%] h-auto justify-center items-center p-8 mb-16">
-          <div className="flex flex-row flex-wrap justify-center items-center gap-16">
+        <div className="flex w-[100%] h-auto justify-center items-center my-8 px-4 md:px-12">
+          <div className="flex flex-row flex-wrap justify-center items-center gap-16 mb-12">
             {postsFiltrados.length > 0 ? (
               postsFiltrados.slice().reverse().map((post) => (
                 <PostPreview key={post.id} post={post}/>
