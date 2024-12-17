@@ -19,7 +19,7 @@ function Home() {
     const fetchPosts = async () => {
       try {
         const response = await axiosService.get('/posts/all')
-        setPosts(response.data.posts)
+        setPosts(response.data.posts.reverse())
       } catch (error) {
         console.error('Erro ao buscar os eventos:', error)
       }
@@ -73,12 +73,12 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className='flex flex-col w-full bg-rose-600 py-32 px-12'>
+        <div className='flex flex-col w-full bg-rose-600 py-24 px-12'>
           <h1 className='text-5xl mb-24 text-center font-kaushan font-black text-white'>Últimas Notícias</h1>
           <div className='flex justify-center items-center'>
             <div className="max-w-[1200px] min-w-[150px] flex flex-wrap flex-row gap-8 justify-center">
               {posts.length > 0 ? (
-                  posts.slice(0, 4).reverse().map((post) => (
+                  posts.slice(0, 4).map((post) => (
                   <LastPost key={post.id} post={post} />
                 ))
               ) : (
