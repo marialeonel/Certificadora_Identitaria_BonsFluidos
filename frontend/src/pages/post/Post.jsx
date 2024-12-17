@@ -62,28 +62,26 @@ function Post () {
 
     return (
         <>
-        <div className="flex flex-col min-h-screen">
-            <Header />
-                <main className="flex-grow py-10 px-12">
-                    <div className="pt-20 px-4 lg:px-64">
-                        <div className="flex flex-col justify-center items-end max-x-screen-lg mx-auto py-10 px-6">
-                            {isAuthenticated && <div className="flex flex-col sm:flex-row gap-4 justify-end mb-4">
+        <div>
+            <Header/>
+                <main className="flex w-full py-20 justify-center items-center px-8">
+                    <div className="flex flex-col justify-center max-w-[800px] items-end mt-8">
+                        {isAuthenticated && <div className="flex w-full md:justify-end md:w-[300px] flex-row justify-between gap-4 mb-4">
                                 <Button className='bg-red-600' icon={deleteIcon} onClick={() => excluirPost(post.id)}>Excluir</Button>
                                 <Button className='bg-gray-500' icon={editIcon} onClick={() => setModalIsOpen(true)}>Editar</Button>
                             </div>
-                            }     
-                            <div className='flex flex-col justify-center items-center'>
-                                <h1 className="text-4xl font-bold text-gray-800 mb-4">{post.title}</h1>
-                                <div className="flex w-full justify-between text-gray-600">
-                                    <p className="text-sm">by <span className="font-medium">Bons Fluidos</span></p>
-                                    <p className="text-sm">{dataFormatada(post.createdAt)}</p>
-                                </div>
-                                <div>
-                                    <img crossorigin="anonymous" src={imageUrl} className="w-auto max-w-lg h-auto bg-gray-200 rounded-md my-14"/>
-                                </div>
-                                <div className="text-justify text-gray-700 text-wrap">
-                                    {post.content}
-                                </div>
+                        }     
+                        <div className='flex w-full flex-col justify-center items-center'>
+                            <h1 className="text-xl sm:text-4xl font-bold text-gray-800 mb-4">{post.title}</h1>
+                            <div className="flex w-full justify-between text-gray-600">
+                                <p className="text-sm">by <span className="font-medium">Bons Fluidos</span></p>
+                                <p className="text-sm">{dataFormatada(post.createdAt)}</p>
+                            </div>
+                            <div>
+                                <img crossorigin="anonymous" src={imageUrl} className="w-auto h-auto bg-gray-200 rounded-md my-14"/>
+                            </div>
+                            <div className="text-justify text-gray-700 text-wrap">
+                                {post.content}
                             </div>
                         </div>
                     </div>
