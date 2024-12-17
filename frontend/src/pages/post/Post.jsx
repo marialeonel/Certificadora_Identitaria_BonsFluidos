@@ -8,6 +8,8 @@ import axiosService from "../../services/AxiosService"
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { useParams } from 'react-router-dom'
+import deleteIcon from '../../assets/delete.png'
+import editIcon from '../../assets/edit.png'
 
 function Post () {
     const { isAuthenticated } = useContext(AuthContext)
@@ -51,25 +53,25 @@ function Post () {
             <Header />
                 <main className="flex-grow py-10 px-12">
                     <div className="pt-20 px-4 lg:px-64">
-                        <div className="max-x-screen-lg mx-auto py-10 px-6">
+                        <div className="flex flex-col justify-center items-end max-x-screen-lg mx-auto py-10 px-6">
                             {isAuthenticated && <div className="flex flex-col sm:flex-row gap-4 justify-end mb-4">
-                                <Button className='bg-red-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-red-600 transition duration-300' >Excluir</Button>
-                                <Button className='bg-gray-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-gray-600 transition duration-300' >Editar</Button>
+                                <Button className='bg-red-600' icon={deleteIcon}>Excluir</Button>
+                                <Button className='bg-gray-500' icon={editIcon}>Editar</Button>
                             </div>
                             }
                             
-                            <div className="mb-8">
-                                <h1 className="text-4xl font-bold text-gray-800">{post.title}</h1>
-                            </div>
-                            <div className="flex flex-col-1 justify-between mb-8 text-gray-600">
-                                <p className="text-sm">by <span className="font-medium">Bons Fluidos</span></p>
-                                <p className="text-sm">{dataFormatada(post.createdAt)}</p>
-                            </div>
-                            <div className="flex mb-8">
-                                <img src={imageUrl} className="w-auto max-w-lg h-auto bg-gray-200 rounded-md"/>
-                            </div>
-                            <div className="text-justify text-gray-700 py-20">
-                                {post.content}
+                            <div className='flex flex-col justify-center items-center'>
+                                <h1 className="text-4xl font-bold text-gray-800 mb-4">{post.title}</h1>
+                                <div className="flex w-full justify-between text-gray-600">
+                                    <p className="text-sm">by <span className="font-medium">Bons Fluidos</span></p>
+                                    <p className="text-sm">{dataFormatada(post.createdAt)}</p>
+                                </div>
+                                <div>
+                                    <img crossorigin="anonymous" src={imageUrl} className="w-auto max-w-lg h-auto bg-gray-200 rounded-md my-14"/>
+                                </div>
+                                <div className="text-justify text-gray-700">
+                                    {post.content}
+                                </div>
                             </div>
                         </div>
                     </div>
