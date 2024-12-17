@@ -9,10 +9,11 @@ import { useEffect, useState } from 'react';
 import axiosService from '../../services/AxiosService';
 import LastPost from '../../components/LastPost/LastPost'
 import ObjectiveList from '../../components/ObjectiveList/ObjectiveList';
-
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
   const [posts, setPosts] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -34,87 +35,85 @@ function Home() {
     "Distribuir absorventes gratuitos",
   ]
 
+  const handleNavigate = () => {
+    navigate('/blog')
+  }
+
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-col w-full'>
       <Header />
-      <main className='pt-14'>
-        <div className='max-w-7xl mx-auto px-12 sm:px-6 lg:px-8 py-20'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-            <div>
-              <h2 className='text-2xl font-semibold mb-4 text-center'>SOBRE NÓS</h2>
-              <p className='mb-4 text-justify'>
-                O projeto Bons Fluidos tem como objetivo levar dignidade para meninas que têm o direito à educação prejudicado por menstruarem, seja pela falta de absorventes ou por não saberem lidar com a transição de fase em suas vidas.
+      <main className='pt-24 w-full'>
+        <div className='max-w-7xl mx-auto px-12 py-16'>
+          <div className='flex justify-center items-center flex-col md:gap-24 lg:flex-row gap-16'>
+            <div className='flex flex-col gap-4'>
+              <h1 className='text-5xl mb-16 text-center font-kaushan font-black text-darker-dark'>Sobre Nós</h1>
+              <p className='text-justify'>
+                O projeto Bons Fluidos tem como objetivo levar dignidade para meninas que têm o direito à educação prejudicado por menstruarem
               </p>
-              <p className='mb-4 text-justify'>O projeto tem como público alvo meninas de escolas públicas de Cornélio Procópio que ofertam anos finais do ensino fundamental e ensino médio.
+              <p className='text-justify '>O projeto tem como público alvo meninas de escolas públicas de Cornélio Procópio que ofertam anos finais do ensino fundamental e ensino médio.
               </p>
-              <p className='mb-4 text-justify'>
+              <p className='text-justify'>
                 Se sua escola tem interesse em abrir esse diálogo, entre em contato conosco!
               </p>
-              <div className='flex justify-center'>
-                <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-600 transition duration-300' >Contate-nos</Button>
+              <div className='flex justify-center mt-10'>
+                <Button className='bg-rose-600 text-white font-bold py-2 md:w-[50%] items-center text-center hover:bg-rose-900 transition duration-300'>Contate-nos</Button>
               </div>
             </div>
             <div>
-              <img src={Mao} alt="Mão segurando um absorvente" className='h-auto' />
+              <img src={Mao} alt="Mão segurando um absorvente" className='w-[100%] md:max-w-[500px] lg:max-w-[800px]' />
             </div>
           </div>
         </div>
-        <div className='flex justify-center'>
-          <h2 className='text-2xl font-semibold mb-4 text-center'>NOSSOS OBJETIVOS</h2>
-        </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-          <div className='flex justify-center'>
-            <img src={GirlFlower} alt='Desenho de uma garota segurando uma flor' className='h-80 ml-80 transition-transform duration-300 hover:scale-110' />
-          </div>
-          <div className='grid grid-cols-1'>
-            <ObjectiveList objectives={objectives} />
+        <div className='relative flex flex-col justify-center md:mt-24 px-12'>
+          <h1 className='text-5xl mb-24 text-center font-kaushan font-black text-darker-dark'>Nossos Objetivos</h1>
+          <div className='flex flex-col-reverse md:flex-row justify-center gap-[10%] items-center'>
+            <img src={GirlFlower} alt='Desenho de uma garota segurando uma flor' className='relative bottom-0 h-[400px]' />
+            <div>
+              <ObjectiveList objectives={objectives}/>
+            </div>
           </div>
         </div>
-        <div className='bg-rose-600 w-full mt-10'>
-          <div className='flex flex-col w-full'>
-            <h2 className='text-2xl font-semibold py-6 text-center text-white'>ÚLTIMAS NOTÍCIAS</h2>
-            <div className='flex justify-center items-center'>
-              <div className="max-w-[1200px] min-w-[150px] flex flex-wrap flex-row gap-8 justify-center">
-                {posts.length > 0 ? (
+        <div className='flex flex-col w-full bg-rose-600 py-32 px-12'>
+          <h1 className='text-5xl mb-24 text-center font-kaushan font-black text-white'>Últimas Notícias</h1>
+          <div className='flex justify-center items-center'>
+            <div className="max-w-[1200px] min-w-[150px] flex flex-wrap flex-row gap-8 justify-center">
+              {posts.length > 0 ? (
                   posts.slice(0, 4).reverse().map((post) => (
-                    <LastPost key={post.id} post={post} />
-                  ))
-                ) : (
-                  <p className="text-center text-white col-span-2">
-                    Nenhum post encontrado.
-                  </p>
-                )}
-              </div>
+                  <LastPost key={post.id} post={post} />
+                ))
+              ) : (
+                <p className="text-center text-white col-span-2">
+                  Nenhum post encontrado.
+                </p>
+              )}
             </div>
           </div>
           <div className='flex justify-center'>
-            <Button className='bg-rose-900 text-white w-[200px] hover:bg-rose-400 transition duration-300 my-8'>Ver mais</Button>
+            <Button className='bg-darker-dark w-[200px] transition duration-300 my-8' onClick={handleNavigate}>Ver Mais</Button>
           </div>
         </div>
         <div className='bg-rose-700 w-full'>
           <Statistics />
         </div>
-        <div>
-        <h1 className='text-2xl font-semibold py-6 text-center' id='doacoes'>DOAÇÕES</h1>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
-            <div className='flex justify-center'>
-              <img src={AbsDelicado} alt='' className='h-96 ml-36 transition-transform duration-300 hover:scale-110' />
-            </div>
-            <div className='mr-40'>
-              <p className='mb-4 text-justify'>O projeto Bons Fluidos tem como objetivo levar dignidade
-                para meninas que têm o direito à educação prejudicado por
-                menstruarem, seja pela falta de absorventes ou por não
-                saberem lidar com a transição de fase em suas vidas.</p>
-              <p className='mb-4 text-justify'>
-                O projeto tem como público alvo meninas de escolas públicas
-                de Cornélio Procópio que ofertam anos finais do ensino fundamental e ensino médio.
-              </p>
-              <p className='mb-4 text-justify'>Se sua escola tem interesse em abrir esse diálogo,
-                entre em contato conosco!
-              </p>
-              <div className='flex justify-center'>
-                <Button className='bg-rose-900 text-white font-bold py-2 w-40 items-center text-center hover:bg-rose-600 transition duration-300'>QUERO AJUDAR!</Button>
-              </div>
+        <div className='py-24 px-12'>
+          <h1 className='text-5xl mb-16 text-center font-kaushan font-black text-darker-dark' id='doacoes'>Doações</h1>
+          <div className='flex flex-col md:flex-row justify-center items-center md:gap-12 lg:gap-24 gap-16'>
+            <img src={AbsDelicado} alt='' className='max-h-96 transition-transform duration-300 hover:scale-110' />
+            <div className='max-w-[500px]'>
+                <p className='mb-4 text-justify'>O projeto Bons Fluidos tem como objetivo levar dignidade
+                  para meninas que têm o direito à educação prejudicado por
+                  menstruarem, seja pela falta de absorventes ou por não
+                  saberem lidar com a transição de fase em suas vidas.</p>
+                <p className='mb-4 text-justify'>
+                  O projeto tem como público alvo meninas de escolas públicas
+                  de Cornélio Procópio que ofertam anos finais do ensino fundamental e ensino médio.
+                </p>
+                <p className='mb-12 text-justify'>Se sua escola tem interesse em abrir esse diálogo,
+                  entre em contato conosco!
+                </p>
+                <div className='flex justify-center'>
+                  <Button className='bg-rose-900 text-white font-bold py-2 items-center text-center hover:bg-rose-600 transition duration-300'>Quero Ajudar!</Button>
+                </div>
             </div>
           </div>
         </div>
