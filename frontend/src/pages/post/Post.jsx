@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom'
 import deleteIcon from '../../assets/delete.png'
 import editIcon from '../../assets/edit.png'
 import ModalForm from "../../components/ModalForm/ModalForm";
+import ModalConfirm from "../../components/ModalConfirm/ModalConfirm";
 
 function Post () {
     const { isAuthenticated } = useContext(AuthContext)
@@ -18,6 +19,7 @@ function Post () {
     const navigate = useNavigate()
     const [post, setPost] = useState(null)
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [confirmIsOpen, setConfirmIsOpen] = useState(false)
     
     useEffect(() => {
         const getPost = async (id) => {
@@ -49,6 +51,7 @@ function Post () {
     const imageUrl = `${baseUrl}${post.imageUrl}`;
     
     const excluirPost = async (id) => {
+        <ModalConfirm action={'excluir'}></ModalConfirm>
         try {
             await axiosService.delete(`/posts/${id}`)
             setPost(null)
@@ -66,7 +69,7 @@ function Post () {
                 <main className="flex w-full py-20 justify-center items-center px-8">
                     <div className="flex flex-col justify-center max-w-[800px] items-end mt-8">
                         {isAuthenticated && <div className="flex w-full md:justify-end md:w-[300px] flex-row justify-between gap-4 mb-4">
-                                <Button className='bg-red-600' icon={deleteIcon} onClick={() => excluirPost(post.id)}>Excluir</Button>
+                                <Button className='bg-red-600' icon={deleteIcon} onClick={() => setConfirmIsOpen(true)}>Excluir</Button>
                                 <Button className='bg-gray-500' icon={editIcon} onClick={() => setModalIsOpen(true)}>Editar</Button>
                             </div>
                         }     
@@ -86,6 +89,7 @@ function Post () {
                     </div>
                 </main>
                 {modalIsOpen && <ModalForm onClose={() => setModalIsOpen(false)} action={'Edição'} post={post}></ModalForm>}
+                {confirmIsOpen && <ModalConfirm action={'excluir'} onClose={() => setConfirmIsOpen(false)} onAction={() => excluirPost(post.id)}></ModalConfirm>}
             <Footer />
         </div>
         
