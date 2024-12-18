@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 const {storage } = require('../services/multerConfig');
 const Post = require('../model/Post.js');
 const { checkToken } = require('../middleware/authentication.js');
@@ -109,13 +111,30 @@ router.put('/:id', checkToken, upload.single('image'), async (req, res) => {
 
 router.delete('/:id', checkToken, async (req, res) => {
   try {
-    const result = await Post.destroy({ where: { id: req.params.id } });
-    if (!result) return handleResponse(res, 404, 'Post not found');
+    const post = await Post.findOne({ where: { id: req.params.id } });
 
-    handleResponse(res, 200, `Post deleted: ${req.params.id}`, { message: 'Post successfully deleted' });
+    if (!post) {
+      return handleResponse(res, 404, 'Post not found');
+    }
+
+    const imagePath = path.join(__dirname, '../uploads', post.imageUrl); 
+    const result = await Post.destroy({ where: { id: req.params.id } });
+
+    if (!result) {
+      return handleResponse(res, 404, 'Failed to delete post');
+    }
+
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        console.error(`Error deleting image: ${err.message}`);
+      }
+    });
+
+    handleResponse(res, 200, `Post deleted: ${req.params.id}`, { message: 'Post and image successfully deleted' });
   } catch (error) {
     handleResponse(res, 500, `Error deleting post: ${error.message}`);
   }
 });
+
 
 module.exports = router;
