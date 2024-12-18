@@ -101,8 +101,18 @@ function ModalForm({ onClose, action, post, fetch }) {
                     </div>
                     <Textarea label={'Conteúdo'} value={content} name={content} onChange={(e) => {setContent(e.target.value)}}></Textarea>
                 </div>
-                <div className='mt-5'>
-                    <input type="file" accept='image/*' className='break-words' onChange={handleImageChange}/>
+                <div className='mt-4'>
+
+                    {action === 'Edição' && image && (
+                        <div className="mt-2 p-2 bg-gray-100 rounded-md shadow-sm border-b border-gray-300">
+                            <p className="text-sm font-medium text-gray-700">Imagem atual:</p>
+                            <p className="text-sm text-blue-600 truncate">{post.imageUrl}</p>
+                        </div>
+                    )}
+
+                    <div className="mt-2">
+                        <input type="file" accept="image/*" className="break-words" onChange={handleImageChange} />
+                    </div>
                 </div>
                 <div>
                     <Button type={'button'} className={'mt-10'} onClick={action === 'Criação' ? handleCriar : handleEditar}>Salvar</Button>
