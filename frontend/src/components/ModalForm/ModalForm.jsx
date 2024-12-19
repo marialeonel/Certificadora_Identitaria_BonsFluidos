@@ -3,6 +3,7 @@ import Button from '../Button/Button'
 import Textarea from '../Textarea/Textarea'
 import { useState, useEffect } from 'react'
 import axiosService from '../../services/AxiosService'
+import CloseButton from '../CloseButton/CloseButton'
 
 function ModalForm({ onClose, action, post, fetch }) {
     const [title, setTitle] = useState('')
@@ -86,7 +87,7 @@ function ModalForm({ onClose, action, post, fetch }) {
     return (
         <div className='fixed flex top-0 items-center justify-center w-screen h-screen bg-gray-900/25 z-[999]'>
             <form className='bg-white px-3 py-6 h-screen w-screen sm:p-6 sm:w-[560px] sm:h-auto rounded-sm'>
-                <button className='bg-gray-200 h-6 w-6 rounded-full text-gray-600 text-xs font-medium hover:bg-gray-300' onClick={onClose}>X</button>
+                <CloseButton onClose={onClose}></CloseButton>
                 <div className='flex flex-row items-center justify-center mb-10'>
                     <h1 className={'text-xl font-bold'}>{action} de um post</h1>
                 </div>
