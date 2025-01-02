@@ -14,7 +14,6 @@ Agenda: Uma página que organiza e filtra eventos postados como categorias espec
 ## Índice  
   - [Pré-requisitos](#pré-requisitos)  
   - [Ferramentas Utilizadas](#ferramentas-utilizadas)  
-  - [Estrutura de Pastas](#estrutura-de-pastas)  
   - [Como Configurar e Executar](#como-configurar-e-executar)  
   - [Testando o Sistema](#testando-o-sistema)  
   - [Contas de Acesso](#contas-de-acesso)  
@@ -48,16 +47,12 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 
 ---
 
-## Estrutura de Pastas
-
----
-
 ## Como Configurar e Executar  
 
 ### 1. Clonar o Repositório  
 ``` 
-git clone <URL_DO_REPOSITÓRIO>  
-cd <NOME_DO_REPOSITÓRIO>
+git clone https://github.com/marialeonel/Certificadora_Identitaria_BonsFluidos.git
+cd Certificadora_Identitaria_BonsFluidos
 ```
 
 ### 2. Configurar o Backend
