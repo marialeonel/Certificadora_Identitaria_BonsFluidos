@@ -94,6 +94,34 @@ npm run dev
 
 ### Funcionalidades Desenvolvidas
 
+- **Página Inicial**:  
+  - Seção de apresentação do projeto.  
+  - Exibição das últimas notícias, estatísticas e informações sobre doações.
+
+- **Footer**:  
+  - Informações de contato.
+
+- **Página de Blog**:  
+  - Listagem das postagens de conteúdo e eventos.
+
+- **Input de Busca**:  
+  - Filtra as postagens com base no título e no conteúdo.
+
+- **Funcionalidades para Usuário Logado**:  
+  - Botão para adicionar novos posts, abrindo um modal para cadastro.  
+  - Botão de edição para atualizar posts, com modal preenchido com os dados originais.  
+  - Botão para excluir posts.
+
+- **Página do Post Singular**:  
+  - Exibe o conteúdo completo de uma postagem.
+
+- **Página de Eventos**:  
+  - Exibe apenas os posts da categoria "Evento", funcionando como uma agenda de eventos.
+
+- **Página de Login**:  
+  - Permite acesso apenas aos voluntários do projeto, habilitando as funcionalidades de CRUD no blog. Não possui opção de cadastro.
+  - Página de login que não permite cadastro, permitindo que apenas os voluntários do projeto acessem as funcionalidades de CRUD do blog.
+
 ### Roteiro para Testes
   - Inicie o sistema seguindo o passo a passo acima ([Como Configurar e Executar](#como-configurar-e-executar))
   - Acesse o front-end pelo endereço:
