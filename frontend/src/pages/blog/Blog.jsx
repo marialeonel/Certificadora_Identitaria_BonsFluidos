@@ -9,8 +9,6 @@ import {useState, useEffect, useContext} from 'react'
 import axiosService from '../../services/AxiosService'
 import ModalForm from '../../components/ModalForm/ModalForm'
 import { AuthContext } from '../../context/AuthContext'
-import ModalConfirm from '../../components/ModalConfirm/ModalConfirm';
-
 
 function Blog() {
   const [posts, setPosts] = useState([])

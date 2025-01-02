@@ -1,5 +1,3 @@
-import React from "react"
-
 function Button({ className, onClick, type='button', icon, children }) {
     return (
         <>
