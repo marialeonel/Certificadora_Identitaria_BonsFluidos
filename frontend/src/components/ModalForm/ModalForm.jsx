@@ -69,7 +69,6 @@ function ModalForm({ onClose, action, post, fetch }) {
                     'Content-Type': 'multipart/form-data',
                 },
             })
-    
             onClose()
             await fetch()
         } catch (error) {
